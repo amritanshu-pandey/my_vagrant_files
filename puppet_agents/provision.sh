@@ -5,10 +5,10 @@ echo 'Starting provisioning on machine: '`hostname`
 #sudo apt-get install -y docker-ce
 cd ~
 sudo echo -e "\n192.168.56.101 puppet" >> /etc/hosts
-wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
-sudo dpkg -i puppetlabs-release-pc1-xenial.deb
-sudo apt-get update
-sudo apt-get install puppet-agent
+wget https://apt.puppetlabs.com/puppet5-release-xenial.deb
+sudo dpkg -i puppet5-release-xenial.deb
+sudo apt-get update -y
+sudo apt-get install puppet-agent -y
 sudo systemctl enable puppet
 sudo systemctl start puppet
 
