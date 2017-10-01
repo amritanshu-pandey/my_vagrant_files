@@ -1,0 +1,45 @@
+Vagrant.configure("2") do |config|
+  config.vm.provision :shell, path: "provision.sh"
+  config.vm.define "dm1" do |dm1|
+    dm1.vm.box = "ubuntu/xenial64"
+    dm1.vm.hostname = 'dm1'
+    dm1.vm.box_url = "ubuntu/xenial64"
+
+    dm1.vm.network :private_network, ip: "192.168.56.102"
+
+    dm1.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 256]
+      v.customize ["modifyvm", :id, "--name", "dm1"]
+    end
+  end
+
+  config.vm.define "dm2" do |dm2|
+    dm2.vm.box = "ubuntu/xenial64"
+    dm2.vm.hostname = 'dm2'
+    dm2.vm.box_url = "ubuntu/xenial64"
+
+    dm2.vm.network :private_network, ip: "192.168.56.103"
+
+    dm2.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 256]
+      v.customize ["modifyvm", :id, "--name", "dm2"]
+    end
+  end
+
+  config.vm.define "dm3" do |dm3|
+    dm3.vm.box = "ubuntu/xenial64"
+    dm3.vm.hostname = 'dm3'
+    dm3.vm.box_url = "ubuntu/xenial64"
+
+    dm3.vm.network :private_network, ip: "192.168.56.104"
+
+    dm3.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 256]
+      v.customize ["modifyvm", :id, "--name", "dm3"]
+    end
+  end
+
+end
